@@ -1,0 +1,8 @@
+[package]
+name = "get_request"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+error-chain = "0.12.4"
+reqwest = {version = "0.12.8", features = ["blocking", "json"]}
