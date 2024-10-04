@@ -1,0 +1,10 @@
+[package]
+name = "make_api_calls"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde_json = "*"
+serde = { version = "*", features = ["derive"] }
+reqwest = { version = "*", features = ["json"] }
+tokio = { version = "*", features = ["full"] }
