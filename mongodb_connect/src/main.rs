@@ -8,8 +8,8 @@ use tokio;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let client_uri =
-        env::var("MONGODB_URI").expect("Envirnoment variable not set. Set MONGODB_URI env variable");
+    let client_uri = env::var("MONGODB_URI")
+        .expect("Envirnoment variable not set. Set MONGODB_URI env variable");
     let options = ClientOptions::parse(&client_uri).await?;
     let client = Client::with_options(options)?;
 

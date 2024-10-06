@@ -27,7 +27,9 @@ async fn create_schema(db_url: &str) -> Result<SqliteQueryResult, sqlx::Error> {
         settings_id     INTEGER NOT NULL DEFAULT 1,
         FOREIGN KEY (settings_id) REFRENCES settings(settings_id) ON UPDATE SET NULL ON DELETE SET NULL
      );";
-
+    let result = sqlx::query(&qry).execute(&pool).await;
+    pool.close().await;
+    return  result;
 }
 
 #[async_std::main]
@@ -46,5 +48,4 @@ async fn main() {
 
     instances.close().await;
     println!("{:?}", res);
-    Ok(())
 }
