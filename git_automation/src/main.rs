@@ -1,6 +1,5 @@
 use std::io::{self, Write};
 use std::process::{exit, Command};
-use std::thread::panicking;
 
 fn update_commit_push() {
     let add_command = Command::new("git")
@@ -17,7 +16,9 @@ fn update_commit_push() {
     io::stdout().flush().unwrap();
 
     let mut commit_msg = String::new();
-    io::stdin().read_line(&mut commit_msg);
+    io::stdin()
+        .read_line(&mut commit_msg)
+        .expect("Error taking input");
     let commit_command = Command::new("git")
         .arg("commit")
         .arg("-m")
