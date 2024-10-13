@@ -1,0 +1,13 @@
+[package]
+name = "download_utube_cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = "*"
+dirs = "*"
+tokio = { version = "*", features = ["full"] }
+reqwest = { version = "*", features = ["json", "stream"] }
+serde_json = "*"
+serde = { version = "*", features = ["derive"] }
+futures-util = "*"
