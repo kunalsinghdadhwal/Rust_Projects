@@ -11,3 +11,4 @@ reqwest = { version = "*", features = ["json", "stream"] }
 serde_json = "*"
 serde = { version = "*", features = ["derive"] }
 futures-util = "*"
+log = "0.4.22"

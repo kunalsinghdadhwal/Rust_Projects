@@ -147,12 +147,12 @@ async fn getstream(prefix: &str, url: &str, body: HashMap<&str, &str>, path: &st
 
         let streamurl: &str = &streamurl[1..streamurl.len() - 1];
 
-        let idk: Result<T> = downloadfromstream(prefix, &streamurl.to_string(), path).await;
+        let idk: Result<()> = downloadfromstream(prefix, &streamurl.to_string(), path).await;
 
         println!("{:?}", idk);
     } else {
-        errors::create_end(
-            &fromat!(
+        error::create_end(
+            &format!(
                 "{} failed to get stream url. {}",
                 prefix,
                 fmtd_res2.get("text").unwrap()
@@ -176,11 +176,12 @@ async fn downloadfromstream(prefix: &str, url: &str, path: &str) -> Result<()> {
 
     let full_path = format!("{}/{}", path, file3);
 
-    let mut file = std::fs::File(create(format!("{path}/{file3}")))?;
+    let mut file = std::fs::File::create(format!("{path}/{file3}"))?;
     let mut content = Cursor::new(response.bytes().await?);
-    std::io::copt(&mut content, &mut file)?;
+    std::io::copy(&mut content, &mut file)?;
 
     println!("{} completed download. saved as {}", prefix, full_path);
 
     Ok(())
 }
+
